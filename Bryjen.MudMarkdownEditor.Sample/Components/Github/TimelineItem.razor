@@ -1,0 +1,178 @@
+﻿
+@Render
+
+<!--suppress CssUnresolvedCustomProperty -->
+<style>
+    :root {
+        --timeline-item-y-margin: 2.5rem;
+    }
+    
+    .timeline-item {
+        width: 100%; 
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: stretch;
+        
+        margin: var(--timeline-item-y-margin) 0;
+    }
+    
+    .timeline-comment-content {
+        position: relative;
+    }
+
+    .timeline-comment-content::before {
+        content: "";
+
+        position: absolute;
+        display: inline-block;
+        
+        top: 0;
+        left: 1rem;
+        width: 0.1rem;
+        height: calc(100% + var(--timeline-item-y-margin));
+        background-color: #3d444d;
+        margin-right: 5px;
+        
+        z-index: -1;
+    }
+    
+    .timeline-comment-content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        padding: 0.35rem 0.75rem;
+        background-color: #253142;
+        border-top: 1px solid #2a4466;
+        border-left: 1px solid #2a4466;
+        border-right: 1px solid #2a4466;
+        
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+    }
+    
+    .timeline-comment-content-body {
+        padding: 0.6rem 0.75rem;
+        background-color: #212830;
+        border-top: 1px solid #2a4466;
+        border-left: 1px solid #2a4466;
+        border-right: 1px solid #2a4466;
+    }
+
+    .timeline-comment-content-footer {
+        padding: 0.6rem 0.75rem;
+        background-color: #212830;
+        border-left: 1px solid #2a4466;
+        border-right: 1px solid #2a4466;
+        border-bottom: 1px solid #2a4466;
+
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+    
+    .reaction-menu-item {
+        background: #2a313c;
+    }
+    
+    .reaction-menu-item:hover {
+        background-color: #2f3742 !important;
+    }
+</style>
+
+@code
+{
+    private RenderFragment Render => __builder =>
+    {
+        double containterRatios = 0.94;
+
+        <div class="timeline-item">
+            <div style="@($"width: {(1 - containterRatios) * 100}%")">
+                @AvatarRenderFragment
+            </div>
+            <div style="@($"width: {containterRatios * 100}%")">
+                @RenderTimelineComment
+            </div>
+        </div>
+        
+        @*
+        <MudDivider Class="my-4" Style="border-color: #3d444d;"></MudDivider>
+*@
+    };
+
+    private RenderFragment RenderTimelineComment => __builder =>
+    {
+        var publishTimespan = DateTime.Now - TimelineItemModel.PublishDate;
+        
+        <MudStack Justify="Justify.SpaceAround" AlignItems="AlignItems.Stretch" StretchItems="StretchItems.Middle"
+                  Spacing="0" 
+                  Class="timeline-comment-content">
+            <div class="timeline-comment-content-header">
+                <div style="display: flex; align-items: center">
+                    <MudText>
+                        <b>@TimelineItemModel.ItemAuthor&nbsp;·&nbsp;</b>
+                    </MudText>
+                    <MudText Style="font-size: 0.75rem">
+                        commented @(PublishTimespanToString(publishTimespan)) ago
+                    </MudText>
+                </div>
+
+                <div>
+                    @if (IsAuthorRepoOwner)
+                    {
+                        <MudChip T="string" Class="mx-1" Size="Size.Small" Variant="Variant.Outlined">Owner</MudChip>
+                    }
+
+                    @if (IsAuthorIssueAuthor)
+                    {
+                    <MudChip T="string" Class="mx-1" Size="Size.Small" Variant="Variant.Outlined">Author</MudChip>
+                    }
+
+                    <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"/>
+                </div>
+            </div>
+
+            <div class="timeline-comment-content-body">
+                @(new MarkupString(Markdig.Markdown.ToHtml(TimelineItemModel.Contents)))
+            </div>
+
+            <div class="timeline-comment-content-footer">
+                <MudMenu Size="Size.Small" Dense="@true" 
+                         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.BottomLeft"
+                         Icon="@Icons.Material.Outlined.EmojiEmotions" Style="color: #8f969f">
+                    <ChildContent>
+                        <div style="display: flex; border: 2px solid #3d444d;">
+                            <MudMenuItem Class="reaction-menu-item">👍</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">👎</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">😄</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">🎉</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">😕</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">❤️</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">🚀</MudMenuItem>
+                            <MudMenuItem Class="reaction-menu-item">👀</MudMenuItem>
+                        </div>
+                    </ChildContent>
+                </MudMenu>
+            </div>
+        </MudStack>
+    };
+
+    private string PublishTimespanToString(TimeSpan publishTimespan)
+    {
+        return publishTimespan switch
+        {
+            _ when publishTimespan.Days > 1 => $"{publishTimespan.Days} days",
+            _ when publishTimespan.Days == 1 => $"{publishTimespan.Days} day",
+
+            _ when publishTimespan.Hours > 1 => $"{publishTimespan.Hours} hours",
+            _ when publishTimespan.Hours == 1 => $"{publishTimespan.Hours} hour",
+
+            _ when publishTimespan.Minutes > 1 => $"{publishTimespan.Minutes} minutes",
+            _ when publishTimespan.Minutes == 1 => $"{publishTimespan.Minutes} minute",
+
+            _ when publishTimespan.Seconds > 1 => $"{publishTimespan.Seconds} seconds",
+            _ when publishTimespan.Seconds == 1 => $"{publishTimespan.Seconds} second",
+            _ => "Error"
+        };
+    }
+}
