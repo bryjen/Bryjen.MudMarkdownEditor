@@ -5,5 +5,7 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea
 /Bryjen.MudMarkdownEditor.sln.DotSettings.user
-Bryjen.MudMarkdownEditor/node_modules
 
+# npm packages & generated files
+Bryjen.MudMarkdownEditor.Sample/node_modules/
+Bryjen.MudMarkdownEditor.Sample/wwwroot/starry-night/out/js

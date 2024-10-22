@@ -1,15 +1,22 @@
 import { defineConfig } from 'vite';
+import rawPlugin from 'vite-plugin-raw';
 
 export default defineConfig({
     build: {
-        outDir: './wwwroot/dist', // Output directory for the bundle
+        outDir: './wwwroot/starry-night/out/js',
         rollupOptions: {
-            input: './wwwroot/js/index.js', // Entry point for your wrapper
+            input: './wwwroot/starry-night/in/js/wrapper.js',
             output: {
-                entryFileNames: 'index.js', // Specify the output filename
-                assetFileNames: 'assets/[name][extname]', // Keep assets in the 'assets' folder
-                chunkFileNames: 'chunks/[name].js', // Optional: Specify names for chunks
+                entryFileNames: 'wrapper.out.js',
+                assetFileNames: 'assets/[name][extname]',
+                chunkFileNames: 'chunks/[name].js',
             },
         },
     },
+    plugins: [
+        rawPlugin({
+            match: /\.css$/,
+            exclude: null,   // Include all files, including node_modules
+        }),
+    ]
 });

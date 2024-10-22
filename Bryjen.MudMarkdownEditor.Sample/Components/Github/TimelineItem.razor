@@ -133,7 +133,12 @@
             </div>
 
             <div class="timeline-comment-content-body">
-                @(new MarkupString(Markdig.Markdown.ToHtml(TimelineItemModel.Contents)))
+                <div class="comment-markdown">
+                    <style>
+                        @m_styles
+                    </style>
+                    @(new MarkupString(m_processedHtml))
+                </div>
             </div>
 
             <div class="timeline-comment-content-footer">

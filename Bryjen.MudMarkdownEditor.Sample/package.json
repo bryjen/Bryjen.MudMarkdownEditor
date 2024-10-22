@@ -10,9 +10,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "vite": "^5.4.9"
+    "vite": "^5.4.9",
+    "vite-plugin-raw": "^1.0.3"
   },
   "dependencies": {
-    "@wooorm/starry-night": "^3.5.0"
+    "@wooorm/starry-night": "^3.5.0",
+    "hast-util-to-html": "^9.0.3",
+    "markdown-it": "^14.1.0"
   }
 }

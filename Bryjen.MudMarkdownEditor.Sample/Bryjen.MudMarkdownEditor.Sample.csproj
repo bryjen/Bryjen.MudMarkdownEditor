@@ -6,9 +6,27 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-
     <ItemGroup>
         <PackageReference Include="Markdig" Version="0.37.0" />
         <PackageReference Include="MudBlazor" Version="7.*"/>
     </ItemGroup>
+
+    
+    <!-- Custom build commands -->
+    <ItemGroup>
+      <Folder Include="wwwroot\starry-night\out\js\" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ViteBuildInputs Include="$(ProjectDir)wwwroot\starry-night\in\js\wrapper.js"/>
+        <ViteBuildOutputs Include="$(ProjectDir)wwwroot\starry-night\out\js\wrapper.js"/>
+    </ItemGroup>
+    
+    <Target Name="ViteBuild" BeforeTargets="Build"
+            Inputs="@(ViteBuildInputs)"
+            Outputs="@(ViteBuildOutputs)">
+        <Exec Command="echo '[ViteBuild] Changes to the following Vite input files detected:' '@(ViteBuildInputs)'" />
+        <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="npx vite build" WorkingDirectory="$(ProjectDir)" />
+    </Target>
 </Project>
