@@ -1,5 +1,6 @@
 ﻿using Bryjen.MudMarkdownEditor.Sample.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using MudBlazor;
 
 namespace Bryjen.MudMarkdownEditor.Sample.Components.Pages;
@@ -8,8 +9,25 @@ public partial class ViewIssue : ComponentBase
 {
     [Inject]
     public required ISnackbar Snackbar { get; set; }
+    
+    [Inject]
+    public required IJSRuntime JsRuntime { get; set; }
 
     
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
+    {
+        if (isFirstRender)
+        {
+            /*
+            var module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./dist/index.js");
+            await module.InvokeVoidAsync("myStarryNightWrapper.loadStarryNight");
+            */
+            
+            await JsRuntime.InvokeVoidAsync("myFunction");
+        }
+    }
+    
+
     private const string RepoOwner = "bryjen";
     
     private const string IssueAuthor = "bryjen";
