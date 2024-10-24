@@ -6,7 +6,7 @@ window.getCssStyles = function () {
     return "another test css";
 }
 
-window.parseHtml = async function (rawHtml) {
+window.parseMarkdown = async function (rawHtml) {
     const starryNight = await createStarryNight(common)
     const tree = starryNight.highlight(rawHtml, 'source.cs')
     const asHtml = toHtml(tree)
@@ -15,7 +15,7 @@ window.parseHtml = async function (rawHtml) {
     return asHtml;
 }
 
-window.parseMarkdown = async function (rawMarkdown) {
+window.parseMarkdownWithIt = async function (rawMarkdown) {
     const starryNight = await createStarryNight(common)
 
     const markdownItInstance = markdownIt({
@@ -44,23 +44,3 @@ window.parseMarkdown = async function (rawMarkdown) {
     
     return markdownItInstance.render(rawMarkdown);
 }
-
-
-
-window.printDateTimeNow = function() {  // helpful for debugging interop
-    const now = new Date();
-    const padZero = (number) => number.toString().padStart(2, '0');
-
-    const hours = padZero(now.getHours());
-    const minutes = padZero(now.getMinutes());
-    const seconds = padZero(now.getSeconds());
-
-    const day = padZero(now.getDate());
-    const month = padZero(now.getMonth() + 1);
-    const year = now.getFullYear();
-
-    const formattedDateTime = `[${hours}:${minutes}:${seconds} ${day}/${month}/${year}]`;
-    console.log(formattedDateTime);
-    return formattedDateTime;
-}
-

@@ -7,7 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.68" />
         <PackageReference Include="Markdig" Version="0.37.0" />
+        <PackageReference Include="Markdig.SyntaxHighlighting" Version="1.1.7" />
+        <PackageReference Include="Markdown.ColorCode" Version="2.3.0" />
         <PackageReference Include="MudBlazor" Version="7.*"/>
     </ItemGroup>
 
@@ -19,7 +22,7 @@
     
     <ItemGroup>
         <ViteBuildInputs Include="$(ProjectDir)wwwroot\starry-night\in\js\wrapper.js"/>
-        <ViteBuildOutputs Include="$(ProjectDir)wwwroot\starry-night\out\js\wrapper.js"/>
+        <ViteBuildOutputs Include="$(ProjectDir)wwwroot\starry-night\out\js\wrapper.out.js"/>
     </ItemGroup>
     
     <Target Name="ViteBuild" BeforeTargets="Build"

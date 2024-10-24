@@ -1,4 +1,6 @@
-﻿
+﻿@using System.Xml.Linq
+@using HtmlAgilityPack
+
 @Render
 
 <!--suppress CssUnresolvedCustomProperty -->
@@ -78,6 +80,18 @@
     .reaction-menu-item:hover {
         background-color: #2f3742 !important;
     }
+    
+    .scrollable-container {
+        width: 100%;
+        white-space: pre;
+        overflow-x: auto;
+        box-sizing: border-box;
+        
+        border-radius: 0.25rem;
+        
+        padding: 1rem;
+        background-color: #262c36;
+    }
 </style>
 
 @code
@@ -125,12 +139,16 @@
 
                     @if (IsAuthorIssueAuthor)
                     {
-                    <MudChip T="string" Class="mx-1" Size="Size.Small" Variant="Variant.Outlined">Author</MudChip>
+                        <MudChip T="string" Class="mx-1" Size="Size.Small" Variant="Variant.Outlined">Author</MudChip>
                     }
 
                     <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"/>
                 </div>
             </div>
+            
+            @{
+                RenderFragment something = @<div></div>;
+            }
 
             <div class="timeline-comment-content-body">
                 <div class="comment-markdown">
@@ -139,7 +157,27 @@
                     </style>
                     @(new MarkupString(m_processedHtml))
                 </div>
+                
+                @if (Environment.IsDevelopment())
+                {
+                    <MudDivider Class="my-6" Style="border-color: #2a4466"></MudDivider>
+                    <MudText Typo="Typo.caption" Class="my-2"><b>Unprocessed</b> HTML:</MudText>
+                    <div class="scrollable-container">
+                        @(m_rawHtml)
+                    </div>
+                    
+                    
+                    var doc = new HtmlDocument();
+                    doc.LoadHtml(m_processedHtml);
+                    
+                    <MudDivider Class="my-6" Style="border-color: #2a4466"></MudDivider>
+                    <MudText Typo="Typo.caption" Class="my-2">Processed HTML:</MudText>
+                    <div class="scrollable-container">
+                        @(m_processedHtml)
+                    </div>
+                }
             </div>
+            
 
             <div class="timeline-comment-content-footer">
                 <MudMenu Size="Size.Small" Dense="@true" 
