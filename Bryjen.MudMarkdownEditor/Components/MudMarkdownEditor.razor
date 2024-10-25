@@ -1,0 +1,68 @@
+﻿@using Microsoft.JSInterop
+@namespace Bryjen.MudMarkdownEditor
+
+@inject IJSRuntime JsRuntime
+
+
+@Render
+
+
+@code {
+
+    protected virtual RenderFragment Render => __builder =>
+    {
+        if (ComponentTemplate is not null)
+        {
+            
+        }
+        else
+        {
+            @DefaultComponentTemplate
+        }
+    };
+
+    private RenderFragment DefaultComponentTemplate =>
+        @<div class="mud-markdown-editor @Classes" style="@Styles">
+            @DefaultEditorTemplate
+            @DefaultPreviewTemplate
+        </div>;
+
+    private RenderFragment DefaultEditorTemplate => 
+        @<textarea @bind-value="Markdown" @bind-value:event="oninput" class="markdown-editor-container">
+        </textarea>;
+
+    private RenderFragment DefaultPreviewTemplate =>
+        @<div class="markdown-preview-container">
+            @(new MarkupString(ParseMarkdownFunc(Markdown)))
+        </div>;
+}
+
+<style>
+    .mud-markdown-editor {
+        
+    }
+    
+    .markdown-editor-container {
+        flex-grow: 1;
+        max-height: 50%;
+        width: 100%;
+        padding: 1rem;
+        
+        color: var(--mud-palette-primary-text);
+        border: 1px solid #ccc;
+        background-color: var(--mud-palette-background);
+        
+        resize: none;
+        outline: none;
+        overflow: auto;
+    }
+    
+    .markdown-preview-container {
+        flex-grow: 1; 
+        max-height: 50%; 
+        width: 100%;
+        padding: 1rem;
+
+        overflow: auto;
+    }
+</style>

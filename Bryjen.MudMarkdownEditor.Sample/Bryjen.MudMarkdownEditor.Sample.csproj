@@ -25,6 +25,10 @@
         <ViteBuildOutputs Include="$(ProjectDir)wwwroot\starry-night\out\js\wrapper.out.js"/>
     </ItemGroup>
     
+    <ItemGroup>
+      <ProjectReference Include="..\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.csproj" />
+    </ItemGroup>
+    
     <Target Name="ViteBuild" BeforeTargets="Build"
             Inputs="@(ViteBuildInputs)"
             Outputs="@(ViteBuildOutputs)">
