@@ -9,7 +9,6 @@
     <ItemGroup>
         <PackageReference Include="HtmlAgilityPack" Version="1.11.68" />
         <PackageReference Include="Markdig" Version="0.37.0" />
-        <PackageReference Include="Markdig.SyntaxHighlighting" Version="1.1.7" />
         <PackageReference Include="Markdown.ColorCode" Version="2.3.0" />
         <PackageReference Include="MudBlazor" Version="7.*"/>
     </ItemGroup>
@@ -17,6 +16,7 @@
     
     <!-- Custom build commands -->
     <ItemGroup>
+      <Folder Include="Utils\" />
       <Folder Include="wwwroot\starry-night\out\js\" />
     </ItemGroup>
     

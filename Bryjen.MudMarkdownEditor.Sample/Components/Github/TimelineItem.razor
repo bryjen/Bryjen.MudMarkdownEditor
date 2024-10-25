@@ -63,7 +63,7 @@
     }
 
     .timeline-comment-content-footer {
-        padding: 0.6rem 0.75rem;
+        padding: 0 0.75rem 0.6rem 0.75rem;
         background-color: #212830;
         border-left: 1px solid #2a4466;
         border-right: 1px solid #2a4466;
@@ -108,10 +108,6 @@
                 @RenderTimelineComment
             </div>
         </div>
-        
-        @*
-        <MudDivider Class="my-4" Style="border-color: #3d444d;"></MudDivider>
-*@
     };
 
     private RenderFragment RenderTimelineComment => __builder =>
@@ -146,24 +142,17 @@
                 </div>
             </div>
             
-            @{
-                RenderFragment something = @<div></div>;
-            }
-
             <div class="timeline-comment-content-body">
-                <div class="comment-markdown">
-                    <style>
-                        @m_styles
-                    </style>
+                <div class="markdown-body">
                     @(new MarkupString(m_processedHtml))
                 </div>
-                
+@*
                 @if (Environment.IsDevelopment())
                 {
                     <MudDivider Class="my-6" Style="border-color: #2a4466"></MudDivider>
                     <MudText Typo="Typo.caption" Class="my-2"><b>Unprocessed</b> HTML:</MudText>
                     <div class="scrollable-container">
-                        @(m_rawHtml)
+                        @(m_rawMarkdown)
                     </div>
                     
                     
@@ -176,6 +165,7 @@
                         @(m_processedHtml)
                     </div>
                 }
+*@
             </div>
             
 
