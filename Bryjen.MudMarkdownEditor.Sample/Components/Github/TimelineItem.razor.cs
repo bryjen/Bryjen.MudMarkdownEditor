@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Bryjen.MudMarkdownEditor.Sample.MarkdownPipelines;
 
 namespace Bryjen.MudMarkdownEditor.Sample.Components.Github;
 
@@ -26,16 +25,4 @@ public partial class TimelineItem : ComponentBase
     
     [Parameter]
     public bool IsAuthorRepoOwner { get; set; } = false;
-
-
-    private string m_rawMarkdown = String.Empty;
-    private string m_processedHtml = string.Empty;
-
-    
-    protected override void OnParametersSet()
-    {
-        var rawMarkdown = TimelineItemModel.Contents.Trim();
-        m_rawMarkdown = rawMarkdown;
-        m_processedHtml = MarkdigColorCode.MarkdownToHtml(rawMarkdown);
-    }
 }

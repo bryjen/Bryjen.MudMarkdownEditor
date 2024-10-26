@@ -1,10 +1,9 @@
 ﻿using ColorCode.Common;
 using ColorCode.Styling;
-using MudBlazor;
 
-namespace Bryjen.MudMarkdownEditor.Sample.MarkdownPipelines.Markdig;
+namespace Bryjen.MudMarkdownEditor.MarkdownPipelines;
 
-public static class GithubThemeStyleDictionary
+internal static  class GithubStyleDictionary
 {
     private const string GithubBackground = "#262c36";
     private const string GithubPlainText = "#d1d7e0";

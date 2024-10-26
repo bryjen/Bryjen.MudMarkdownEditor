@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Bryjen.MudMarkdownEditor.MarkdownPipelines;
+using Microsoft.AspNetCore.Components;
 using MudBlazor.Utilities;
 
 namespace Bryjen.MudMarkdownEditor;
@@ -19,7 +20,7 @@ public partial class MudMarkdownEditor : ComponentBase
     public string Markdown { get; set; } = string.Empty;
 
     [Parameter] 
-    public Func<string, string> ParseMarkdownFunc { get; set; } = id => id;
+    public Func<string, string> ParseMarkdownFunc { get; set; } = GithubStyle.MarkdownToHtml; 
 
 
     [Parameter] 

@@ -1,17 +1,16 @@
 ﻿using HtmlAgilityPack;
 using Markdig;
 using Markdown.ColorCode;
-using Bryjen.MudMarkdownEditor.Sample.MarkdownPipelines.Markdig;
 
-namespace Bryjen.MudMarkdownEditor.Sample.MarkdownPipelines;
+namespace Bryjen.MudMarkdownEditor.MarkdownPipelines;
 
-public static class MarkdigColorCode
+public class GithubStyle
 {
     public static string MarkdownToHtml(string rawMarkdown)
     {
         var pipeline = new MarkdownPipelineBuilder()
             .UseAdvancedExtensions()
-            .UseColorCode(HtmlFormatterType.Style, GithubThemeStyleDictionary.GithubStyle)
+            .UseColorCode(HtmlFormatterType.Style, GithubStyleDictionary.GithubStyle)
             .Build();
         
         var syntaxHighlightedHtml = global::Markdig.Markdown.ToHtml(rawMarkdown, pipeline);
@@ -22,9 +21,29 @@ public static class MarkdigColorCode
         
         AddScrollableCodeBlocks(ref htmlDoc);
 
-        return $"<style>{CssStyles}</style>{htmlDoc.DocumentNode.OuterHtml}";
+        return $"""
+                <div class="markdown-body">
+                    <style>
+                        {CssStyles}
+                    </style>
+                    {htmlDoc.DocumentNode.OuterHtml}
+                </div>
+                """;
     }
 
+    private static void AddScrollableCodeBlocks(ref HtmlDocument htmlDocument)
+    {
+        var divNodes = htmlDocument.DocumentNode.SelectNodes("//div[not(@id) and count(*) = 1 and pre]");
+
+        if (divNodes != null)
+        {
+            foreach (var div in divNodes)
+            {
+                div.SetAttributeValue("class", "scrollable-container");
+            }
+        }
+    }
+    
     
     private const string CssStyles = 
         """
@@ -67,17 +86,4 @@ public static class MarkdigColorCode
             text-align-last: start !important;
         }
         """;
-    
-    private static void AddScrollableCodeBlocks(ref HtmlDocument htmlDocument)
-    {
-        var divNodes = htmlDocument.DocumentNode.SelectNodes("//div[not(@id) and count(*) = 1 and pre]");
-
-        if (divNodes != null)
-        {
-            foreach (var div in divNodes)
-            {
-                div.SetAttributeValue("class", "scrollable-container");
-            }
-        }
-    }
 }

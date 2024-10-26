@@ -1,4 +1,5 @@
 ﻿@using System.Xml.Linq
+@using Bryjen.MudMarkdownEditor.MarkdownPipelines
 @using HtmlAgilityPack
 
 @Render
@@ -143,9 +144,8 @@
             </div>
             
             <div class="timeline-comment-content-body">
-                <div class="markdown-body">
-                    @(new MarkupString(m_processedHtml))
-                </div>
+                @(new MarkupString(GithubStyle.MarkdownToHtml(TimelineItemModel.Contents)))
+                
 @*
                 @if (Environment.IsDevelopment())
                 {
