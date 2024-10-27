@@ -3,8 +3,8 @@
 
 @inject IJSRuntime JsRuntime
 
-
-@ComponentTemplate((EditorTemplate, PreviewTemplate))
+@* Initialized with null checks in 'OnInitialized' *@
+@ComponentTemplate!((EditorTemplate, PreviewTemplate)!)
 
 
 @code {
@@ -12,17 +12,17 @@
     {
         // Initialize with default values
         
-        ComponentTemplate = templates => 
+        ComponentTemplate ??= templates => 
             @<div class="mud-markdown-editor @Classes" style="@Styles">
                 @templates.EditorTemplate
                 @templates.PreviewTemplate
             </div>;
         
-        EditorTemplate = 
+        EditorTemplate ??= 
             @<textarea @bind-value="@Markdown" @bind-value:event="oninput" class="markdown-editor-container">
             </textarea>;
         
-        PreviewTemplate =
+        PreviewTemplate ??=
             @<div class="markdown-preview-container">
                 @((MarkupString) ParseMarkdownFunc(Markdown))
             </div>;

@@ -7,13 +7,13 @@ namespace Bryjen.MudMarkdownEditor;
 public partial class MudMarkdownEditor : ComponentBase
 {
     [Parameter]
-    public RenderFragment<(RenderFragment EditorTemplate, RenderFragment PreviewTemplate)> ComponentTemplate { get; set; } = null!;
+    public RenderFragment<(RenderFragment EditorTemplate, RenderFragment PreviewTemplate)>? ComponentTemplate { get; set; }
 
     [Parameter] 
-    public RenderFragment EditorTemplate { get; set; } = null!;
+    public RenderFragment? EditorTemplate { get; set; }
 
     [Parameter] 
-    public RenderFragment PreviewTemplate { get; set; } = null!;
+    public RenderFragment? PreviewTemplate { get; set; }
 
 
     [Parameter] 
