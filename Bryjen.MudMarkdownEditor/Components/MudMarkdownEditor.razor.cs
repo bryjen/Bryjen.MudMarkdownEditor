@@ -7,13 +7,13 @@ namespace Bryjen.MudMarkdownEditor;
 public partial class MudMarkdownEditor : ComponentBase
 {
     [Parameter]
-    public RenderFragment<(RenderFragment<string> EditorTemplate, RenderFragment<string> PreviewTemplate)>? ComponentTemplate { get; set; }
+    public RenderFragment<(RenderFragment EditorTemplate, RenderFragment PreviewTemplate)> ComponentTemplate { get; set; } = null!;
 
     [Parameter] 
-    public RenderFragment<string>? EditorTemplate { get; set; }
-    
-    [Parameter]
-    public RenderFragment<string>? PreviewTemplate { get; set; }
+    public RenderFragment EditorTemplate { get; set; } = null!;
+
+    [Parameter] 
+    public RenderFragment PreviewTemplate { get; set; } = null!;
 
 
     [Parameter] 
@@ -29,6 +29,7 @@ public partial class MudMarkdownEditor : ComponentBase
     [Parameter] 
     public string Style { get; set; } = string.Empty;
     
+    
     private string Classes =>
         new CssBuilder()
             .AddClass(Class)
@@ -42,4 +43,5 @@ public partial class MudMarkdownEditor : ComponentBase
             .AddStyle("justify-content: space-between")
             .AddStyle("flex-direction: column")
             .Build();
+    
 }

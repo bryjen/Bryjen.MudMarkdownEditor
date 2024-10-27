@@ -4,44 +4,33 @@
 @inject IJSRuntime JsRuntime
 
 
-@Render
+@ComponentTemplate((EditorTemplate, PreviewTemplate))
 
 
 @code {
-
-    protected virtual RenderFragment Render => __builder =>
+    protected override void OnInitialized()
     {
-        if (ComponentTemplate is not null)
-        {
-            
-        }
-        else
-        {
-            @DefaultComponentTemplate
-        }
-    };
-
-    private RenderFragment DefaultComponentTemplate =>
-        @<div class="mud-markdown-editor @Classes" style="@Styles">
-            @DefaultEditorTemplate
-            @DefaultPreviewTemplate
-        </div>;
-
-    private RenderFragment DefaultEditorTemplate => 
-        @<textarea @bind-value="Markdown" @bind-value:event="oninput" class="markdown-editor-container">
-        </textarea>;
-
-    private RenderFragment DefaultPreviewTemplate =>
-        @<div class="markdown-preview-container">
-            @(new MarkupString(ParseMarkdownFunc(Markdown)))
-        </div>;
+        // Initialize with default values
+        
+        ComponentTemplate = templates => 
+            @<div class="mud-markdown-editor @Classes" style="@Styles">
+                @templates.EditorTemplate
+                @templates.PreviewTemplate
+            </div>;
+        
+        EditorTemplate = 
+            @<textarea @bind-value="@Markdown" @bind-value:event="oninput" class="markdown-editor-container">
+            </textarea>;
+        
+        PreviewTemplate =
+            @<div class="markdown-preview-container">
+                @((MarkupString) ParseMarkdownFunc(Markdown))
+            </div>;
+    }
 }
 
+<!--suppress CssUnresolvedCustomProperty -->
 <style>
-    .mud-markdown-editor {
-        
-    }
-    
     .markdown-editor-container {
         flex-grow: 1;
         max-height: 50%;
