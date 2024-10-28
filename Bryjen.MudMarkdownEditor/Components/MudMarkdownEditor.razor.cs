@@ -28,8 +28,17 @@ public partial class MudMarkdownEditor : ComponentBase
     
     [Parameter] 
     public string Style { get; set; } = string.Empty;
+
     
-    
+    /// <remarks>
+    /// Exists to prevent the warning when the property 'Markdown' is directly assigned to.
+    /// </remarks>
+    public void SetMarkdown(string markdown)
+    {
+        Markdown = markdown;
+    }
+
+
     private string Classes =>
         new CssBuilder()
             .AddClass(Class)

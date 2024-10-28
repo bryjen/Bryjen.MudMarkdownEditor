@@ -23,10 +23,32 @@
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Include="wwwroot\Utils.js" />
-    </ItemGroup>
+    
+    <Target Name="ToolRestore">
+        <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
+    </Target>
 
+    <Target Name="CombineJS">
+        <CreateItem Include="./Scripts/*.js">
+            <Output TaskParameter="Include" ItemName="jsFilesToCombine" />
+        </CreateItem>
+        <ReadLinesFromFile File="%(jsFilesToCombine.FullPath)">
+            <Output TaskParameter="Lines" ItemName="jsLines" />
+        </ReadLinesFromFile>
+        <WriteLinesToFile File="./Scripts/combined/Bryjen.MudMarkdownEditor.js" Lines="@(jsLines)" Overwrite="true" />
+    </Target>
 
+    <Target Name="WebCompiler" BeforeTargets="Build" DependsOnTargets="ToolRestore;CombineJS">
+        <!--minify js-->
+        <Exec Command="dotnet webcompiler ./Scripts/combined/Bryjen.MudMarkdownEditor.js -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
+    </Target>
 
+    <Target Name="IncludeGeneratedStaticFiles" DependsOnTargets="WebCompiler" BeforeTargets="BeforeBuild">
+        <Error Condition="!Exists('$(MSBuildProjectDirectory)/wwwroot/Bryjen.MudMarkdownEditor.min.js')" Text="Missing Bryjen.MudMarkdownEditor.min.js in wwwroot" />
+        <ItemGroup>
+            <!--Include without duplication-->
+            <_NewCompiledJsFiles Include="wwwroot/Bryjen.MudMarkdownEditor.min.js" Exclude="@(Content)" />
+            <Content Include="@(_NewCompiledJsFiles)" />
+        </ItemGroup>
+    </Target>
 </Project>

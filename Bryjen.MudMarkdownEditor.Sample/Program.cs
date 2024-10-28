@@ -1,5 +1,6 @@
 using MudBlazor.Services;
 using Bryjen.MudMarkdownEditor.Sample.Components;
+using Bryjen.MudMarkdownEditor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// TODO: Create extension function to neatly add all bundled services
+builder.Services.AddScoped<JsTextAreaService>();
 
 var app = builder.Build();
 
