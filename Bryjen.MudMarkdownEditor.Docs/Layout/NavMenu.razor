@@ -1,0 +1,33 @@
+﻿<MudNavMenu>
+    <MudText Class="my-4" Align="Align.Center">
+        MudMarkdownEditor
+    </MudText>
+
+    <MudNavLink Href="/Home" Match="NavLinkMatch.All">
+        Home
+    </MudNavLink>
+
+    <MudNavLink Href="/Examples" Match="NavLinkMatch.All">
+        Examples
+    </MudNavLink>
+
+    <MudNavGroup Title="Api">
+        <MudNavLink Href="/Api/MudMarkdownEditor" Match="NavLinkMatch.All">
+            MudMarkdownEditor
+        </MudNavLink>
+        <MudNavLink Href="/Api/MudGithubMarkdownEditor" Match="NavLinkMatch.All">
+            MudGithubMarkdownEditor
+        </MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Samples">
+        <MudNavLink Href="/Samples/GithubIssueSamplePage" Match="NavLinkMatch.All">
+            Github Issue Page Sample
+        </MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>
+
+@code
+{
+    private static readonly Typo NavLinkTypo = Typo.caption;
+}
