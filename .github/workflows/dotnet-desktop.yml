@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore Bryjen.MudMarkdownEditor.Sample
+        run: dotnet restore Bryjen.MudMarkdownEditor.Docs
 
       - name: Build Blazor WASM app
-        run: dotnet publish Bryjen.MudMarkdownEditor.Sample -c Release -o build_output
+        run: dotnet publish Bryjen.MudMarkdownEditor.Docs -c Release -o release
 
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
