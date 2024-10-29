@@ -13,10 +13,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Set up .NET Core SDK
+      - name: Install .NET SDK 7.0
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8.0'  # Use the version your project requires
+          dotnet-version: '7.x'
+
+      - name: Install .NET SDK 8.0
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.x'
 
       - name: Restore dependencies
         run: dotnet restore Bryjen.MudMarkdownEditor.Sample
