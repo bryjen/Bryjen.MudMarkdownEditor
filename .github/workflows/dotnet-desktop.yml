@@ -34,3 +34,4 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: dist/Web/wwwroot
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
