@@ -23,7 +23,11 @@
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
+    <Target Name="ExecWebCompilerScript" BeforeTargets="BeforeBuild">
+        <Exec Command="powershell -ExecutionPolicy Bypass -File $(ProjectDir)\ExecWebCompiler.ps1 -ProjectDirectory '$(MSBuildProjectDirectory)'" />
+    </Target>
     
+   <!--
     <Target Name="ToolRestore">
         <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
     </Target>
@@ -39,14 +43,13 @@
     </Target>
 
     <Target Name="WebCompiler" BeforeTargets="Build" DependsOnTargets="ToolRestore;CombineJS">
-        <!--minify js-->
         <Exec Command="dotnet webcompiler ./Scripts/combined/Bryjen.MudMarkdownEditor.js -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
     </Target>
-
-    <Target Name="IncludeGeneratedStaticFiles" DependsOnTargets="WebCompiler" BeforeTargets="BeforeBuild">
+    -->
+    
+    <Target Name="IncludeGeneratedStaticFiles" DependsOnTargets="ExecWebCompilerScript">
         <Error Condition="!Exists('$(MSBuildProjectDirectory)/wwwroot/Bryjen.MudMarkdownEditor.min.js')" Text="Missing Bryjen.MudMarkdownEditor.min.js in wwwroot" />
         <ItemGroup>
-            <!--Include without duplication-->
             <_NewCompiledJsFiles Include="wwwroot/Bryjen.MudMarkdownEditor.min.js" Exclude="@(Content)" />
             <Content Include="@(_NewCompiledJsFiles)" />
         </ItemGroup>

@@ -11,6 +11,11 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all"/>
         <PackageReference Include="MudBlazor" Version="7.14.0" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <Watch Include="Components/**/*.razor"/>
+        <Watch Include="Components/**/*.cs"/>
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.csproj" />
@@ -18,6 +23,15 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Reference Include="MudBlazor.Docs">
+            <HintPath>..\..\MudBlazor\src\MudBlazor.Docs\bin\Release\net8.0\MudBlazor.Docs.dll</HintPath>
+        </Reference>
+        <Reference Include="MudBlazor.Examples.Data">
+            <HintPath>..\..\MudBlazor\src\MudBlazor.Docs\bin\Release\net8.0\MudBlazor.Examples.Data.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

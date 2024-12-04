@@ -8,28 +8,24 @@
 
 <div class="page mud-layout">
      <main>
-        <MudLayout>
-            <MudAppBar Elevation="1" Dense="true">
-                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" 
-                               Class="mr-6"/>
-                <div alt="Flat Earthers Logo" class="logo mx-2"></div>
-                <MudText Typo="Typo.body1" Class="mx-2">Flat Earthers</MudText>
-                
-                <MudSpacer/>
-
-                <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle"
-                               Class="mx-2"/>
-                
-                
-                <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"/>
-            </MudAppBar>
-            <MudDrawer Open ClipMode="DrawerClipMode.Never" Elevation="1">
-                <NavMenu/>
-            </MudDrawer>
-            <MudMainContent>
-                @Body
-            </MudMainContent>
-        </MudLayout>
+         <MudLayout>
+             
+             <MudAppBar Elevation="0" Dense="true" Style="background-color: #00000000">
+                 <MudSpacer/>
+                 @*
+                 <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle"Class="mx-2"/>
+*@
+                 <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"/>
+             </MudAppBar>
+             
+             <MudDrawer Open ClipMode="DrawerClipMode.Never" Elevation="1">
+                 <NavMenu/>
+             </MudDrawer>
+             
+             <MudMainContent>
+                 @Body
+             </MudMainContent>
+         </MudLayout>
     </main>
 </div>
 

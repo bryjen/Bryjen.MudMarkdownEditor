@@ -101,3 +101,219 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+
+
+
+
+
+.mud-codeblock {
+    height: 100%;
+    padding: 24px;
+    overflow: auto
+}
+
+.mud-codeblock pre {
+    height: 100%;
+    color: var(--mud-palette-text-primary);
+    padding: 0;
+    font-size: 1em;
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    -webkit-font-smoothing: subpixel-antialiased;
+    direction: ltr
+}
+
+.mud-codeblock .html+.csharp {
+    margin-top: 23px
+}
+
+.mud-codeblock .html mark,.mud-codeblock .codearea mark {
+    font-weight: 600;
+    color: var(--mud-palette-primary);
+    background-color: var(--mud-palette-action-default-hover);
+    border-radius: 2px;
+    padding: 1px 3px;
+    margin: 0 0 0 2px;
+    user-select: all
+}
+
+.mud-codeblock .html .htmlTagDelimiter,.mud-codeblock .codearea .htmlTagDelimiter {
+    color: #979797
+}
+
+.mud-codeblock .html .htmlElementName,.mud-codeblock .codearea .htmlElementName {
+    color: var(--mud-palette-primary);
+    font-weight: 600
+}
+
+.mud-codeblock .html .htmlAttributeName,.mud-codeblock .codearea .htmlAttributeName {
+    color: #8323d8
+}
+
+.mud-codeblock .html .htmlOperator,.mud-codeblock .html .quot,.mud-codeblock .codearea .htmlOperator,.mud-codeblock .codearea .quot {
+    color: #737373
+}
+
+.mud-codeblock .html .htmlAttributeValue,.mud-codeblock .codearea .htmlAttributeValue {
+    color: #ff4081
+}
+
+.mud-codeblock .html .htmlLink,.mud-codeblock .codearea .htmlLink {
+    color: #ff4081;
+    text-decoration: underline
+}
+
+.mud-codeblock .html .enum,.mud-codeblock .codearea .enum {
+    color: #00c853;
+    background-color: var(--mud-palette-gray-light)
+}
+
+.mud-codeblock .html .enumValue,.mud-codeblock .html .sharpVariable,.mud-codeblock .codearea .enumValue,.mud-codeblock .codearea .sharpVariable {
+    color: var(--mud-palette-text-primary);
+    background-color: var(--mud-palette-gray-light)
+}
+
+.mud-codeblock .html .keyword,.mud-codeblock .codearea .keyword {
+    color: #2196f3;
+    background-color: var(--mud-palette-gray-light)
+}
+
+.mud-codeblock .html .atSign,.mud-codeblock .codearea .atSign {
+    color: var(--mud-palette-text-primary);
+    background-color: var(--mud-palette-gray-light)
+}
+
+.mud-codeblock .html .comment,.mud-codeblock .codearea .comment {
+    color: #57a64a
+}
+
+.mud-codeblock .csharp .atSign {
+    color: var(--mud-palette-text-primary);
+    background-color: var(--mud-palette-gray-light)
+}
+
+.mud-codeblock .csharp .keyword {
+    color: var(--mud-palette-primary)
+}
+
+.mud-codeblock .csharp .string {
+    color: #e68c32
+}
+
+.mud-codeblock .csharp .function {
+    color: #ff9800
+}
+
+.mud-codeblock .csharp .class {
+    color: #1ec8a5
+}
+
+.mud-codeblock .csharp .localVar {
+    color: #2196f3
+}
+
+.mud-codeblock .csharp .interface {
+    color: #ff4081
+}
+
+.mud-codeblock .csharp .number {
+    color: #b0d7a3
+}
+
+.mud-codeblock .csharp .enum {
+    color: #b4eb8f
+}
+
+.mud-codeblock .csharp .comment {
+    color: #57a64a
+}
+
+.mud-landingpage-editor .html .htmlTagDelimiter,.mud-landingpage-editor .codearea .htmlTagDelimiter {
+    color: #979797
+}
+
+.mud-landingpage-editor .html .htmlElementName,.mud-landingpage-editor .codearea .htmlElementName {
+    color: #988ef1
+}
+
+.mud-landingpage-editor .html .htmlAttributeName,.mud-landingpage-editor .codearea .htmlAttributeName {
+    color: #27b5b5
+}
+
+.mud-landingpage-editor .html .htmlOperator,.mud-landingpage-editor .html .quot,.mud-landingpage-editor .codearea .htmlOperator,.mud-landingpage-editor .codearea .quot {
+    color: #c8c8c8
+}
+
+.mud-landingpage-editor .html .htmlAttributeValue,.mud-landingpage-editor .codearea .htmlAttributeValue {
+    color: #ededed
+}
+
+.mud-landingpage-editor .html .htmlLink,.mud-landingpage-editor .codearea .htmlLink {
+    color: #61afef;
+    text-decoration: underline
+}
+
+.mud-landingpage-editor .html .enum,.mud-landingpage-editor .codearea .enum {
+    color: #b4eb8f;
+    background-color: rgba(255,255,255,.15)
+}
+
+.mud-landingpage-editor .html .enumValue,.mud-landingpage-editor .html .sharpVariable,.mud-landingpage-editor .codearea .enumValue,.mud-landingpage-editor .codearea .sharpVariable {
+    color: #ededed;
+    background-color: rgba(255,255,255,.15)
+}
+
+.mud-landingpage-editor .html .keyword,.mud-landingpage-editor .codearea .keyword {
+    color: #61afef;
+    background-color: rgba(255,255,255,.15)
+}
+
+.mud-landingpage-editor .html .atSign,.mud-landingpage-editor .codearea .atSign {
+    color: #000;
+    background-color: #d2d295
+}
+
+.mud-landingpage-editor .html .comment,.mud-landingpage-editor .codearea .comment {
+    color: #57a64a
+}
+
+.mud-landingpage-editor .csharp .atSign {
+    color: #000;
+    background-color: #d2d295
+}
+
+.mud-landingpage-editor .csharp .keyword {
+    color: #569cd6
+}
+
+.mud-landingpage-editor .csharp .string {
+    color: #d69d85
+}
+
+.mud-landingpage-editor .csharp .function {
+    color: #dcdcaa
+}
+
+.mud-landingpage-editor .csharp .class {
+    color: #4ec9b0
+}
+
+.mud-landingpage-editor .csharp .localVar {
+    color: #9cdcfe
+}
+
+.mud-landingpage-editor .csharp .interface {
+    color: #b0d7a3
+}
+
+.mud-landingpage-editor .csharp .number {
+    color: #b0d7a3
+}
+
+.mud-landingpage-editor .csharp .enum {
+    color: #b4eb8f
+}
+
+.mud-landingpage-editor .csharp .comment {
+    color: #57a64a
+}

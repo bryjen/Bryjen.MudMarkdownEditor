@@ -1,6 +1,7 @@
+using Bryjen.MudMarkdownEditor.Docs;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Bryjen.MudMarkdownEditor.Docs;
+
 using Bryjen.MudMarkdownEditor.Services;
 using MudBlazor.Services;
 

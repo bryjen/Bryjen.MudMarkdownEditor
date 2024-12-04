@@ -201,7 +201,7 @@ public partial class MudGithubMarkdownEditor : ComponentBase
             modifiedText = formatSlice(text[startPos..]);
             cursorPosition = newCursorPosFunc(startPos);
         }
-        
+
         string newText = $"{text[..startPos]}{modifiedText}";
         m_mudMarkdownEditor.SetMarkdown(newText);
         await JsTextAreaService.ModifyTextArea(m_textAreaId.ToString(), newText, cursorPosition, cursorPosition);

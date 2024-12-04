@@ -1,14 +1,17 @@
 bin/
 obj/
 /packages/
+build_output/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
 /Bryjen.MudMarkdownEditor.sln.DotSettings.user
 
+
 # Bryjen.MudMarkdownEditor
 /Bryjen.MudMarkdownEditor/wwwroot/Bryjen.MudMarkdownEditor.min.js
 /Bryjen.MudMarkdownEditor/Scripts/combined
+
 
 # npm packages & generated files
 Bryjen.MudMarkdownEditor.Sample/node_modules/

@@ -1,6 +1,8 @@
-﻿using HtmlAgilityPack;
+﻿using System.Text;
+using HtmlAgilityPack;
 using Markdig;
 using Markdown.ColorCode;
+
 
 namespace Bryjen.MudMarkdownEditor.MarkdownPipelines;
 
@@ -12,17 +14,19 @@ public class GithubStyle
             .UseAdvancedExtensions()
             .UseColorCode(HtmlFormatterType.Style, GithubStyleDictionary.GithubStyle)
             .Build();
-        
+
         var syntaxHighlightedHtml = global::Markdig.Markdown.ToHtml(rawMarkdown, pipeline);
-        
+
         // Further post-processing
-        
         // We have to modify the html directly. Due to the implementation of 'Markdown.ColorCode', we can't modify the 
+
         // markdown pipeline to change the elements included with the 'div' because the required classes are internal.
-        
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(syntaxHighlightedHtml);
-        
+
+        var stringBuilder = new StringBuilder();
+        Console.WriteLine($"{stringBuilder}");
+
         ModifyCodeBlocks(ref htmlDoc);
 
         return $"""
@@ -42,13 +46,13 @@ public class GithubStyle
         if (divNodes != null)
         {
             int currentCodeBlock = 0;
-            
+
             foreach (var div in divNodes)
             {
                 if (div is not null)
                 {
                     string baseId = $"code-block-{++currentCodeBlock}";
-                    
+
                     div.SetAttributeValue("id", baseId);
                     div.SetAttributeValue("class", "scrollable-container");
                     div.AppendChild(HtmlNode.CreateNode(ClipboardButton($"{baseId}-clipboard-button")));
@@ -65,9 +69,9 @@ public class GithubStyle
             </svg>
         </div>
         """;
-    
-    
-    private const string CssStyles = 
+
+
+    private const string CssStyles =
         """
         .markdown-body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
