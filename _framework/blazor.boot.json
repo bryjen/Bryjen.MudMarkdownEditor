@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Bryjen.MudMarkdownEditor.Docs",
   "resources": {
-    "hash": "sha256-42MfUqDDzmo+qWcWF55BtCOzvvnAD6nio+inQHbo7Yo=",
+    "hash": "sha256-WQFzVf/YR/rNUD/oA2AecfFU7kjYBrdLaoh9vCwxQ8Q=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.vjwfpy4ma5.js": "sha256-MRcrxUXSGko1s5DWg8JAfdPQOEhAgI7f8eEHZLZcv10="
     },
@@ -12,8 +12,8 @@
       "dotnet.native.wasm": "sha256-tNsIOpKojuRDdWiO0e4cvpfgSKpyP/sfvM5ChT8JN64="
     },
     "assembly": {
-      "Bryjen.MudMarkdownEditor.Docs.wasm": "sha256-HUb7JgU7And3+92nmPXDkuUGD9fkeRDEsNGYJiXWTlA=",
-      "Bryjen.MudMarkdownEditor.wasm": "sha256-ixE4x2Tmp/U7qm0ln3HJdYDwdzgFF29Uf8ixKbP7oAU=",
+      "Bryjen.MudMarkdownEditor.Docs.wasm": "sha256-EoxZQBUZhfogVyVvpuX5mvizj6aifNgTqJG0pCu/fEM=",
+      "Bryjen.MudMarkdownEditor.wasm": "sha256-BOaCjgComV38X8uVs+NE7hrWke5nBITctfy+Y15ZSZo=",
       "ColorCode.Core.wasm": "sha256-MU1CG0WM9yn7fhjNqezPvT3DIqEUOz9cPFedLWKX2YQ=",
       "ColorCode.HTML.wasm": "sha256-gfdkROdz/vh5Y8eCvHzcmc6mAAKWKXQGcuQcbr0hRPQ=",
       "HtmlAgilityPack.wasm": "sha256-aPBQJ4jw1k4peS0614Hr/CesKFHhVDCKuTGZIcHytrE=",
