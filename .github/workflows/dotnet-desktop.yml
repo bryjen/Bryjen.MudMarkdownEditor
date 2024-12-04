@@ -12,20 +12,23 @@ jobs:
   deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the code
       - uses: actions/checkout@v4
 
-      # Install .NET Core SDK
+
+      - name: Install PowerShell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y powershell
+
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
           
-      # Install dotnet wasm buildtools workload
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
           
-      # Publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
         run: dotnet publish ./Bryjen.MudMarkdownEditor.Docs/Bryjen.MudMarkdownEditor.Docs.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 

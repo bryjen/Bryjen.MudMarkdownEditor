@@ -36,7 +36,7 @@
     </PropertyGroup>
 
     <Target Name="RunPowerShellScript" BeforeTargets="Build">
-        <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;C:\Users\migue\RiderProjects\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.Docs/SetBase.ps1&quot; -BasePath &quot;$(BasePath)&quot;" />
+        <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass -File &quot;C:\Users\migue\RiderProjects\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.Docs/SetBase.ps1&quot; -BasePath &quot;$(BasePath)&quot;" />
     </Target>
 
 </Project>
