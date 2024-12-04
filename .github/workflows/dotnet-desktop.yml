@@ -1,37 +1,36 @@
-name: Deploy Blazor WASM to GitHub Pages
+name: build and test and deploy
 
 on:
   push:
     branches:
-      - master  # Change this to your default branch if needed
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy-to-github-pages:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      # Checkout the code
+      - uses: actions/checkout@v4
 
-      - name: Install .NET SDK 7.0
-        uses: actions/setup-dotnet@v2
+      # Install .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.x'
-
-      - name: Install .NET SDK 8.0
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '8.x'
-
-      - name: Restore dependencies
-        run: dotnet restore Bryjen.MudMarkdownEditor.Docs
-
-      - name: Build Blazor WASM app
-        run: dotnet publish Bryjen.MudMarkdownEditor.Docs -c Release -o release
+          dotnet-version: 8.0.x
+          
+      # Install dotnet wasm buildtools workload
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+          
+      # Publishes Blazor project to the release-folder
+      - name: Publish .NET Core Project
+        run: dotnet publish ./Bryjen.MudMarkdownEditor.Docs/Bryjen.MudMarkdownEditor.Docs.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
       - name: Commit wwwroot to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: release/wwwroot
+          FOLDER: dist/Web/wwwroot
