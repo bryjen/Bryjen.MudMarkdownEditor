@@ -26,14 +26,17 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
     </ItemGroup>
-    
-    <ItemGroup>
-        <Reference Include="MudBlazor.Docs">
-            <HintPath>..\..\MudBlazor\src\MudBlazor.Docs\bin\Release\net8.0\MudBlazor.Docs.dll</HintPath>
-        </Reference>
-        <Reference Include="MudBlazor.Examples.Data">
-            <HintPath>..\..\MudBlazor\src\MudBlazor.Docs\bin\Release\net8.0\MudBlazor.Examples.Data.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+
+    <!-- Dynamically set the base path -->
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <BasePath>/</BasePath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <BasePath>https://bryjen.github.io/Bryjen.MudMarkdownEditor/</BasePath>
+    </PropertyGroup>
+
+    <Target Name="RunPowerShellScript" BeforeTargets="Build">
+        <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;C:\Users\migue\RiderProjects\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.Docs/SetBase.ps1&quot; -BasePath &quot;$(BasePath)&quot;" />
+    </Target>
 
 </Project>

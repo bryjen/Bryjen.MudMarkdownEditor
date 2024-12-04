@@ -16,3 +16,6 @@ riderModule.iml
 # npm packages & generated files
 Bryjen.MudMarkdownEditor.Sample/node_modules/
 Bryjen.MudMarkdownEditor.Sample/wwwroot/starry-night/out/js
+
+# Auto-generated from 'index-template.html'. See .csproj file for the project.
+Bryjen.MudMarkdownEditor.Docs/wwwroot/index.html
