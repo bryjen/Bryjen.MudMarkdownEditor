@@ -28,6 +28,7 @@
     </ItemGroup>
 
     <!-- Dynamically set the base path -->
+    <!-- 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
         <BasePath>/</BasePath>
     </PropertyGroup>
@@ -38,5 +39,5 @@
     <Target Name="RunPowerShellScript" BeforeTargets="Build">
         <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass -File &quot;C:\Users\migue\RiderProjects\Bryjen.MudMarkdownEditor\Bryjen.MudMarkdownEditor.Docs/SetBase.ps1&quot; -BasePath &quot;$(BasePath)&quot;" />
     </Target>
-
+    -->
 </Project>
